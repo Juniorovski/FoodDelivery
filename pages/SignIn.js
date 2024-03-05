@@ -1,11 +1,10 @@
-import { getAuth, signInWithEmailAndPassword} from 'firebase/auth';
+import { GoogleAuthProvider, signInWithEmailAndPassword} from 'firebase/auth';
 import React, { useEffect, useState } from 'react'
-import app from '../firebase/FirebaseConfig';
 import { Bottom, Box_Login, Container, TextButton, Text_Input, Text_View,TextInput, FieldText, Text_makeLogin, RedirectedBottom, Text_Redirect, Simple_Text, Alt_Box_Login, Alternative_Login, Alt_Redirect, FieldInput } from '../style/SignInStyle';
 import { Entypo, Feather } from '@expo/vector-icons';
+import { auth } from '../firebase/FirebaseConfig';
 
 
-const auth = getAuth(app);
 const SigIn = ({navigation}) => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
@@ -14,19 +13,15 @@ const SigIn = ({navigation}) => {
   const loginUser = async()=>{
     try {
 
-      if (!email) {
-        console.error('O campo de email está vazio.');
-        return; 
-      }
-       if(!password){
-        console.error('Senha invalida! Tente novamente');
+      if ( !email || !password) {
+        console.error('Preencha todos os campos!');
         return;
-       }
-
+      }
+      
      await signInWithEmailAndPassword(auth,email,password)
       .then((userCredential)=>{
            navigation.navigate('Router')
-        const user= userCredential.user;
+        const user = userCredential.user;
       })
       .catch((error)=>{
           console.log(error);
@@ -35,9 +30,11 @@ const SigIn = ({navigation}) => {
             console.error("Falhar ao fazer login!");
       }
   }
-  
-   
 
+  const login_Google=()=>{
+    const provider = new GoogleAuthProvider();
+    console.log(provider)
+  }
   return (
    <Container>
     <Box_Login>
@@ -54,6 +51,7 @@ const SigIn = ({navigation}) => {
         onChangeText={setEmail}
         value={email}
         />
+        <Entypo name='user' color={'#c1c1c1'} size={25}/>
       </FieldInput>
         
         <TextInput>Password</TextInput>
@@ -65,6 +63,7 @@ const SigIn = ({navigation}) => {
         value={password}
         secureTextEntry={true}
         />
+        <Entypo name='eye' color={'#c1c1c1'} size={25}/>
         </FieldInput>
       
         <Bottom
@@ -91,7 +90,9 @@ const SigIn = ({navigation}) => {
         <Entypo name='facebook-with-circle' color={'blue'} size={30}/>
         <Alt_Redirect>Continue with facebook</Alt_Redirect>
       </Alternative_Login>
-      <Alternative_Login>
+      <Alternative_Login
+       onPress={login_Google}
+      >
         <Entypo name='google-drive' color={'blue'} size={30}/>
         <Alt_Redirect>Continue with Google</Alt_Redirect>
       </Alternative_Login>

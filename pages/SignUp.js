@@ -1,35 +1,41 @@
-import { createUserWithEmailAndPassword, getAuth } from 'firebase/auth';
+import { GoogleAuthProvider, createUserWithEmailAndPassword, updateProfile} from 'firebase/auth';
 import React, { useState } from 'react'
-import app from '../firebase/FirebaseConfig';
-import { TouchableOpacity } from 'react-native-gesture-handler';
 import { Bottom, Box_Login, Container, TextButton, Text_Input, Text_View,TextInput, FieldText, Text_makeLogin, RedirectedBottom, Text_Redirect, Simple_Text, Alt_Box_Login, Alternative_Login, Alt_Redirect, FieldInput } from '../style/SignInStyle';
 import { Entypo, Feather } from '@expo/vector-icons';
 import { Alert } from 'react-native';
-const auth = getAuth(app);
+import { auth } from '../firebase/FirebaseConfig';
 
-
+const provider = new GoogleAuthProvider();
 const SignUp = ({navigation}) => {
     const [name,setName] = useState('');
     const [email, setEmail] = useState('');
     const [password,setPassword] = useState('');
+
     
     const saveUser = ({navigation}) =>{
         try {
-            if(!email){
-                alert('campo vazio!');
-            }
+          if (!name || !email || !password) {
+            console.error('Preencha todos os campos!');
+            return;
+          }
             
             createUserWithEmailAndPassword(auth,email,password)
             .then((userCredential)=>{
-             navigation.navigate('router');
                 const user = userCredential.user;
+                updateProfile(user,{displayName:name})
+            })
+            .then(()=>{
+              navigation.navigate('router');
             })
             
            } catch (error) {
             console.log(error);
             Alert.alert('error',error)
            }
+          
     }
+
+    
     
   return (
     <Container>
@@ -95,7 +101,9 @@ const SignUp = ({navigation}) => {
         <Entypo name='facebook-with-circle' color={'blue'} size={30}/>
         <Alt_Redirect>Continue with facebook</Alt_Redirect>
       </Alternative_Login>
-      <Alternative_Login>
+
+      <Alternative_Login
+       onPress={()=>provider}>
         <Entypo name='google-drive' color={'blue'} size={30}/>
         <Alt_Redirect>Continue with Google</Alt_Redirect>
       </Alternative_Login>

@@ -21,7 +21,7 @@ margin: 0 auto;
 export const Text_View = styled.Text`
  font-size: 35px;
  font-weight:bold;
-  color: #000;
+ color: #000;
  text-align: justify;
  margin: 0 auto;
 `;
@@ -61,7 +61,7 @@ export const LogoutBottom = styled.TouchableOpacity`
 `;
 export const Logout_Text = styled.Text`  
 font-size: 20px;
-color: #ff0000;
+color: #F83B01;
 margin-left: 10px;
 align-items: center;
 text-align: center;
@@ -75,5 +75,5 @@ width: 40%;
 margin-left: 10px;
 margin-bottom:10px;
 border-radius: 30px;
-border: 1px solid #ff0000;
+border: 1px solid #F83B01;
 `;

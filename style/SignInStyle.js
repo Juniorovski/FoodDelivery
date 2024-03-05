@@ -30,7 +30,7 @@ export const Text_Input = styled.TextInput`
 
 export const Bottom = styled.TouchableOpacity`
  padding:16px;
- background: #ff0001;
+ background: #F83B01;
  width:90%;
  margin: 0 auto;
  margin-bottom:10px;
@@ -78,7 +78,7 @@ export const RedirectedBottom = styled.TouchableOpacity`
 `;
 export const Text_Redirect = styled.Text`  
  font-size: 18px;
- color: #ff0000;
+ color: #F83B01;
  text-align: justify;
  margin-left: 5px;
  `;

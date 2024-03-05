@@ -13,16 +13,16 @@ const AppRouter = () => {
     return (
         
             <Tab.Navigator
-               tabBarOptions={{
+               screenOptionsOptions={{
                 style: {
                     borderTopColor: 'transparent' ,
                     borderRadius:50
                 },
-                    activeTintColor:"#ff0000",
+                    activeTintColor:"#F83B01",
                     tabStyle: {
                         paddingBottom: 2,
                         paddingTop: 4,
-                        backgroundColor: '#121212', 
+                        backgroundColor: '#0B0C17', 
                         
                     },
                     labelStyle:{

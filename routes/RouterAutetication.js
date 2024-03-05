@@ -9,6 +9,7 @@ import Profile from '../pages/Profile';
 import { getAuth } from 'firebase/auth';
 import app from '../firebase/FirebaseConfig';
 import AppRouter from './AppRouter';
+import Details from '../pages/Details';
 
 const Stack = createStackNavigator();
 const auth = getAuth(app);
@@ -42,6 +43,8 @@ const RouterAutetication = () => {
                     </>
 
                 )}
+
+                <Stack.Screen name='details' component={Details} options={{headerShown:false}}/>
         </Stack.Navigator>
 
     );

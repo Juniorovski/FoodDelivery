@@ -3,9 +3,9 @@ import { View,Text } from 'react-native';
 import { Box_Login, Container, FieldAlter, FieldLogout, LogoutBottom, Logout_Text, PictureProfile, RedirectedBottom, Simple_Text, Text_View } from '../style/ProfileStyle';
 import { Entypo } from '@expo/vector-icons';
 import{getAuth, signOut} from 'firebase/auth';
-import {app} from '../firebase/FirebaseConfig'
+import {auth} from '../firebase/FirebaseConfig'
 
-const auth = getAuth(app);
+
 
 const Profile = ({navigation}) => {
 
@@ -32,27 +32,27 @@ const Profile = ({navigation}) => {
       </RedirectedBottom>
 
       <RedirectedBottom>
-        <Entypo name='folder' size={25} color={'#ff0000'}/>
+        <Entypo name='folder' size={25} color={'#F83B01'}/>
         <Simple_Text>My Orders</Simple_Text>
       </RedirectedBottom>
 
       <RedirectedBottom>
-        <Entypo name='location-pin' size={25} color={'#ff0000'}/>
+        <Entypo name='location-pin' size={25} color={'#F83B01'}/>
         <Simple_Text>Delivery Adress</Simple_Text>
       </RedirectedBottom>
 
       <RedirectedBottom>
-        <Entypo name='wallet' size={25} color={'#ff0000'}/>
+        <Entypo name='wallet' size={25} color={'#F83B01'}/>
         <Simple_Text>Payments Methods</Simple_Text>
       </RedirectedBottom>
 
       <RedirectedBottom>
-        <Entypo name='mail' size={25} color={'#ff0000'}/>
+        <Entypo name='mail' size={25} color={'#F83B01'}/>
         <Simple_Text>Contact Us</Simple_Text>
       </RedirectedBottom>
 
       <RedirectedBottom>
-        <Entypo name='tools' size={25} color={'#ff0000'}/>
+        <Entypo name='tools' size={25} color={'#F83B01'}/>
         <Simple_Text>Settings</Simple_Text>
       </RedirectedBottom>
 
@@ -61,7 +61,7 @@ const Profile = ({navigation}) => {
     <LogoutBottom 
     onPress={Logout}
     >
-      <Entypo name='log-out' size={25} color={'#ff0000'}/>
+      <Entypo name='log-out' size={25} color={'#F83B01'}/>
         <Logout_Text>
           Log out
         </Logout_Text>
